@@ -24,3 +24,5 @@ class DetectorConstruction : public G4VUserDetectorConstruction {
 };
 
 }
+
+#endif

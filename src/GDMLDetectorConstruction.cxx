@@ -1,5 +1,5 @@
-#include "G4GDMLParser.hh"
 #include "DetectorConstruction.h"
+#include "G4GDMLParser.hh"
 #include "G4NistManager.hh"
 #include "G4Box.hh"
 #include "G4Tubs.hh"
@@ -10,7 +10,7 @@
 namespace HyperBeam {
 
 DetectorConstruction::DetectorConstruction(const G4String& gdmlFile) : G4VUserDetectorConstruction(), fGDMLFile(gdmlFile) {}
-DetectorConstruciton::~DetectorConstruction() {}
+DetectorConstruction::~DetectorConstruction() {}
 
 G4VPhysicalVolume* DetectorConstruction::Construct() {
         fParser.Read(fGDMLFile);

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
+
+  <define>
+    <position name="windowPos" unit="cm" x="0" y="0" z="-49"/>
+  </define>
+
+  <materials>
+    <element name="Nitrogen" formula="N" Z="7">
+      <atom value="14.01"/>
+    </element>
+    <element name="Oxygen" formula="O" Z="8">
+      <atom value="16.00"/>
+    </element>
+    <element name="Aluminum" formula="Al" Z="13">
+      <atom value="26.98"/>
+    </element>
+
+    <material name="Air" state="gas">
+      <fraction n="0.7" ref="Nitrogen"/>
+      <fraction n="0.3" ref="Oxygen"/>
+    </material>
+    <material name="Aluminum" state="solid">
+      <fraction n="1.0" ref="Aluminum"/>
+    </material>
+  </materials>
+
+  <solids>
+    <box  name="worldBox"    x="50"  y="50"  z="100" lunit="cm"/>
+    <tube name="windowTube"  rmin="0" rmax="5" z="0.005" 
+          startphi="0" deltaphi="360" lunit="mm" aunit="deg"/>
+  </solids>
+
+  <structure>
+    <volume name="ExitWindow">
+      <materialref ref="Aluminum"/>
+      <solidref    ref="windowTube"/>
+    </volume>
+
+    <volume name="World">
+      <materialref ref="Air"/>
+      <solidref    ref="worldBox"/>
+      <physvol>
+        <volumeref ref="ExitWindow"/>
+        <positionref ref="windowPos"/>
+      </physvol>
+    </volume>
+  </structure>
+
+  <setup name="Default" version="1.0">
+    <world ref="World"/>
+  </setup>
+
+</gdml>

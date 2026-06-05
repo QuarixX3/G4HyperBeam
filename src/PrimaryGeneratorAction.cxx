@@ -1,9 +1,9 @@
+#include "PrimaryGeneratorAction.h"
 #include "G4VUserPrimaryGeneratorAction.hh"
 #include "G4GeneralParticleSource.hh"
 #include "G4ParticleTable.hh"
 #include "G4Event.hh"
 #include "G4SystemOfUnits.hh"
-#include "PrimaryGeneratorAction.h"
 
 namespace HyperBeam {
 
@@ -20,16 +20,16 @@ source->GetEneDist()->SetMonoEnergy(3*MeV);
 
 source->GetPosDist()->SetPosDisType("Beam");
 source->GetPosDist()->SetBeamSigmaInR(1*mm);
-source->GetPosDist()->SetCentreCoords(G4ThreeVector(0, 0, -49*cm);
+source->GetPosDist()->SetCentreCoords(G4ThreeVector(0, 0, -49*cm));
 
 source->GetAngDist()->SetAngDistType("beam2d");
 source->GetAngDist()->SetBeamSigmaInAngR(1*mrad);
+}
 
 void PrimaryGeneratorAction::GeneratePrimaries(G4Event* event) {
         fGPS->GeneratePrimaryVertex(event);
 }
 
-}
 
 PrimaryGeneratorAction::~PrimaryGeneratorAction() {
         delete fGPS;

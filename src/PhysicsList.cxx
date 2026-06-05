@@ -1,9 +1,11 @@
+#include "PhysicsList.h"
 #include "G4VModularPhysicsList.hh"
 #include "G4EmStandardPhysics.hh"
 #include "G4HadronElasticPhysics.hh"
 #include "G4HadronPhysicsQGSP_BIC.hh"
 #include "G4SystemOfUnits.hh"
-#include "PhysicsList.h"
+
+namespace HyperBeam {
 
 PhysicsList::PhysicsList() : G4VModularPhysicsList() {
 
@@ -18,3 +20,5 @@ PhysicsList::PhysicsList() : G4VModularPhysicsList() {
 }
 
 PhysicsList::~PhysicsList() {}
+
+}

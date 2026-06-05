@@ -1,26 +1,24 @@
 #include "ActionInitialization.h"
 #include "PrimaryGeneratorAction.h"
+#include "RunAction.h"
+#include "SteppingAction.h"
 
 namespace HyperBeam {
 
 ActionInitialization::ActionInitialization() : G4VUserActionInitialization() {}
 ActionInitialization::~ActionInitialization() {}
 
-void ActionInitialization::BuildForMaster() const {
-        // auto runAction = new RunAction;
-        // SetUserAction(runAction);
-}
-
 void ActionInitialization::Build() const {
         SetUserAction(new PrimaryGeneratorAction);
 
-        // auto runAction = new RunAction;
-        // SetUserAction(runAction);
+         RunAction* runAction = new RunAction();
+         SetUserAction(runAction);
 
-        // auto eventAction = new EventAction(runAction);
-        // SetUserAction(eventAction);
+         SetUserAction(new SteppingAction(runAction));
+}
 
-        // SetUserAction(new SteppingAction(eventAction));
+void ActionInitialization::BuildForMaster() const {
+         SetUserAction(new RunAction());
 }
 
 }
