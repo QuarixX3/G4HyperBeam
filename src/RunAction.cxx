@@ -1,6 +1,8 @@
 #include "RunAction.h"
 #include "G4Run.hh"
 #include "G4SystemOfUnits.hh"
+#include "G4Threading.hh"
+#include <sstream>
 
 namespace HyperBeam {
 
@@ -8,14 +10,36 @@ RunAction::RunAction() : G4UserRunAction(), fRootFile(nullptr), fTree(nullptr), 
                        fStepLength(0.), fTrackID(0), fParentID(0) {}
 
 RunAction::~RunAction() {
-    if (fRootFile) {
-        fRootFile->Close();
-        delete fRootFile;
-        }
+   // if (fRootFile) {
+   //     fRootFile->Close();
+   //     delete fRootFile;
+   //     }
+   fTree = nullptr;
+   fRootFile = nullptr;
 }
 
 void RunAction::BeginOfRunAction(const G4Run*) {
-        fRootFile = new TFile("proton_beam.root", "RECREATE");
+        // fRootFile = new TFile("proton_beam.root", "RECREATE");
+        if (G4Threading::IsMasterThread()) {
+            return;
+            }
+
+        G4int tid = G4Threading::G4GetThreadId();
+
+        std::stringstream filename;
+
+        if (tid >= 0) {
+            filename << "proton_beam_thread_" << tid << ".root";
+            }
+        else {
+            filename << "proton_beam_master.root";
+            }
+
+        fRootFile = new TFile(filename.str().c_str(), "RECREATE");
+
+        if (!fRootFile || fRootFile->IsZombie()) {
+                G4Exception("RunAction::BeginOfRunAction", "ROOT001", FatalException, "Failed to create ROOT file");
+        }
 
         fTree = new TTree ("Tree", "Beam Data");
 
@@ -30,11 +54,18 @@ void RunAction::BeginOfRunAction(const G4Run*) {
 
 void RunAction::EndOfRunAction(const G4Run*) {
         if (fRootFile && fRootFile->IsOpen()) {
-            fTree->Write();
+            // fTree->Write();
+            fRootFile->cd();
+            fTree->Write("", TObject::kOverwrite);
+            // fRootFile->Close();
+            // delete fRootFile;
+            // fRootFile = nullptr;
+            // fTree = nullptr;
+            delete fTree;
+            fTree = nullptr;
             fRootFile->Close();
             delete fRootFile;
             fRootFile = nullptr;
-            fTree = nullptr;
         }
 };
 

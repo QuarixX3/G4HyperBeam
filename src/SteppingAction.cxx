@@ -29,7 +29,12 @@ namespace HyperBeam {
     fRunAction->fTrackID = trackID;
     fRunAction->fParentID = parentID;
 
-    fRunAction->GetTree()->Fill();
+    // fRunAction->GetTree()->Fill();
+    TTree* tree = fRunAction->GetTree();
+
+    if(tree) {
+    tree->Fill();
+    }
 }
 
 }
