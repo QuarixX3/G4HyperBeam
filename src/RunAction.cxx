@@ -10,33 +10,15 @@ RunAction::RunAction() : G4UserRunAction(), fRootFile(nullptr), fTree(nullptr), 
                        fStepLength(0.), fTrackID(0), fParentID(0) {}
 
 RunAction::~RunAction() {
-   // if (fRootFile) {
-   //     fRootFile->Close();
-   //     delete fRootFile;
-   //     }
-   fTree = nullptr;
-   fRootFile = nullptr;
+    if (fRootFile) {
+        fRootFile->Close();
+        delete fRootFile;
+        }
 }
 
 void RunAction::BeginOfRunAction(const G4Run*) {
-        // fRootFile = new TFile("proton_beam.root", "RECREATE");
-        if (G4Threading::IsMasterThread()) {
-            return;
-            }
-
-        G4int tid = G4Threading::G4GetThreadId();
-
-        std::stringstream filename;
-
-        if (tid >= 0) {
-            filename << "proton_beam_thread_" << tid << ".root";
-            }
-        else {
-            filename << "proton_beam_master.root";
-            }
-
-        fRootFile = new TFile(filename.str().c_str(), "RECREATE");
-
+        fRootFile = new TFile("proton_beam.root", "RECREATE");
+        
         if (!fRootFile || fRootFile->IsZombie()) {
                 G4Exception("RunAction::BeginOfRunAction", "ROOT001", FatalException, "Failed to create ROOT file");
         }

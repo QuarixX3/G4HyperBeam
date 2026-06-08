@@ -15,7 +15,7 @@ int main(int argc, char** argv) {
         // }
 
         // construct run manager
-        auto runManager = G4RunManagerFactory::CreateRunManager(G4RunManagerType::Default);
+        auto runManager = G4RunManagerFactory::CreateRunManager(G4RunManagerType::Serial);
 
         using namespace HyperBeam;
         
