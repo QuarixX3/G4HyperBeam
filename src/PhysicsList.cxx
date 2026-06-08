@@ -10,7 +10,8 @@ namespace HyperBeam {
 PhysicsList::PhysicsList() : G4VModularPhysicsList() {
 
         SetVerboseLevel(1);
-        SetDefaultCutValue(0.1*mm);
+        SetDefaultCutValue(0.001*mm);
+        G4ProductionCutsTable::GetProductionCutsTable()->SetEnergyRange(100*eV, 100*GeV);
 
         RegisterPhysics(new G4EmStandardPhysics());
 

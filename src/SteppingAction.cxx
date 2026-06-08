@@ -9,8 +9,11 @@ namespace HyperBeam {
     SteppingAction::~SteppingAction() {}
 
     void SteppingAction::UserSteppingAction(const G4Step* step) {
-        if (step->GetTotalEnergyDeposit() == 0.) 
-                return;
+//        if (step->GetTotalEnergyDeposit() == 0.) 
+//                return;
+
+    G4String particleName = step->GetTrack()->GetDefinition()->GetParticleName();
+    if (particleName != "proton") return;
 
     G4ThreeVector pos = step->GetPostStepPoint()->GetPosition();
 
@@ -35,6 +38,11 @@ namespace HyperBeam {
     if(tree) {
     tree->Fill();
     }
+
+    step->GetTrack()->GetDynamicParticle();
+    G4double maxStep = 0.1*mm;
+    step->GetTrack()->SetStepLength(maxStep);
+
 }
 
 }

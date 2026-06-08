@@ -37,7 +37,7 @@ int main(int argc, char** argv) {
                  UImanager->ApplyCommand(command + argv[1]);
          }
          else {
-                 UImanager->ApplyCommand("/run/beamOn 1000");
+                 UImanager->ApplyCommand("/run/beamOn 10000");
          }
 
         // finish ui stuff
