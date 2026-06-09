@@ -568,4 +568,6 @@ CMakeFiles/HyperBeam.dir/src/PhysicsList.cxx.o: \
  /GEANT4/geant4-install/include/Geant4/G4HadXSTypes.hh \
  /GEANT4/geant4-install/include/Geant4/G4HadronPhysicsQGSP_BIC.hh \
  /GEANT4/geant4-install/include/Geant4/G4HadronPhysicsQGSP_BERT.hh \
- /GEANT4/geant4-install/include/Geant4/G4SystemOfUnits.hh
+ /GEANT4/geant4-install/include/Geant4/G4SystemOfUnits.hh \
+ /GEANT4/geant4-install/include/Geant4/G4StepLimiterPhysics.hh \
+ /GEANT4/geant4-install/include/Geant4/G4EmStandardPhysics_option4.hh

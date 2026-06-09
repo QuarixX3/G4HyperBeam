@@ -39,10 +39,6 @@ namespace HyperBeam {
     tree->Fill();
     }
 
-    step->GetTrack()->GetDynamicParticle();
-    G4double maxStep = 0.1*mm;
-    step->GetTrack()->SetStepLength(maxStep);
-
 }
 
 }

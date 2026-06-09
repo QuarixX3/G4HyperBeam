@@ -6,6 +6,7 @@
 #include "G4LogicalVolume.hh"
 #include "G4PVPlacement.hh"
 #include "G4SystemOfUnits.hh"
+#include "G4UserLimits.hh"
 
 namespace HyperBeam {
 
@@ -15,7 +16,12 @@ DetectorConstruction::~DetectorConstruction() {}
 G4VPhysicalVolume* DetectorConstruction::Construct() {
         fParser.Read(fGDMLFile);
 
-        return fParser.GetWorldVolume();
+        G4VPhysicalVolume* world = fParser.GetWorldVolume();
+
+        G4UserLimits* stepLimit = new G4UserLimits(0.1*mm);
+        world->GetLogicalVolume()->SetUserLimits(stepLimit);
+
+        return world;
 
 }
 

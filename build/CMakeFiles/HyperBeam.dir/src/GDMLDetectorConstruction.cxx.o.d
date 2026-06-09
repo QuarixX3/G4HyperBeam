@@ -602,4 +602,6 @@ CMakeFiles/HyperBeam.dir/src/GDMLDetectorConstruction.cxx.o: \
  /GEANT4/geant4-install/include/Geant4/G4Tubs.hh \
  /GEANT4/geant4-install/include/Geant4/G4LogicalVolume.hh \
  /GEANT4/geant4-install/include/Geant4/G4PVPlacement.hh \
- /GEANT4/geant4-install/include/Geant4/G4SystemOfUnits.hh
+ /GEANT4/geant4-install/include/Geant4/G4SystemOfUnits.hh \
+ /GEANT4/geant4-install/include/Geant4/G4UserLimits.hh \
+ /GEANT4/geant4-install/include/Geant4/G4UserLimits.icc
