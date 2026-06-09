@@ -3,68 +3,61 @@
       xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
 
   <define>
-    <!-- Tissue phantom centered 15cm downstream of beam origin -->
-    <position name="tissuePos" unit="cm" x="0" y="0" z="15"/>
+<!--    <position name="windowPos" unit="cm" x="0" y="0" z="-49"/> -->
+    <position name="boxPos" unit="cm" x="0" y="0" z="0"/>
   </define>
 
   <materials>
-    <!-- Elements for Air -->
     <element name="Nitrogen" formula="N" Z="7">
       <atom value="14.01"/>
     </element>
     <element name="Oxygen" formula="O" Z="8">
       <atom value="16.00"/>
     </element>
-
-    <!-- Elements for Human Tissue (ICRU Report 44 soft tissue) -->
-    <element name="Hydrogen" formula="H" Z="1">
-      <atom value="1.008"/>
-    </element>
-    <element name="Carbon" formula="C" Z="6">
-      <atom value="12.011"/>
+    <element name="Aluminum" formula="Al" Z="13">
+      <atom value="26.98"/>
     </element>
 
-    <material name="Air" state="gas">
-      <D value="1.293" unit="mg/cm3"/>
+    <material name="Air" state="gas" Z="7.3">
+      <D value ="1.293" unit="mg/cm3"/>
       <fraction n="0.7" ref="Nitrogen"/>
       <fraction n="0.3" ref="Oxygen"/>
     </material>
-
-    <!-- ICRU 44 Soft Tissue: H(10.2%), C(14.3%), N(3.4%), O(71.1%) by mass -->
-    <material name="HumanTissue" state="solid">
-      <D value="1.04" unit="g/cm3"/>
-      <fraction n="0.102" ref="Hydrogen"/>
-      <fraction n="0.143" ref="Carbon"/>
-      <fraction n="0.034" ref="Nitrogen"/>
-      <fraction n="0.711" ref="Oxygen"/>
-    </material>
-
+<!--    <material name="Aluminum" state="solid">
+      <fraction n="1.0" ref="Aluminum"/>
+    </material> -->
   </materials>
 
   <solids>
-    <!-- World: 1m x 1m x 1m box -->
-    <box name="worldBox" x="100" y="100" z="100" lunit="cm"/>
-
-    <!-- Tissue phantom: 20cm x 20cm x 30cm block -->
-    <box name="tissueBox" x="20" y="20" z="30" lunit="cm"/>
+    <box  name="invisBox"  x="50"  y="50"  z="100"  lunit="cm"/>
+    <box  name="worldBox"    x="50"  y="50"  z="100" lunit="cm"/>
+<!--    <tube name="windowTube"  rmin="0" rmax="5" z="0.005" 
+          startphi="0" deltaphi="360" lunit="mm" aunit="deg"/> -->
   </solids>
 
   <structure>
-
-    <volume name="TissuePhantom">
-      <materialref ref="HumanTissue"/>
-      <solidref    ref="tissueBox"/>
+    <volume name="InvisBox">
+      <materialref ref="Air"/>
+      <solidref    ref="invisBox"/>
     </volume>
+
+<!--    <volume name="ExitWindow">
+      <materialref ref="Aluminum"/>
+      <solidref    ref="windowTube"/>
+    </volume> -->
 
     <volume name="World">
       <materialref ref="Air"/>
       <solidref    ref="worldBox"/>
+<!--      <physvol>
+        <volumeref ref="ExitWindow"/>
+        <positionref ref="windowPos"/>
+      </physvol> -->
       <physvol>
-        <volumeref ref="TissuePhantom"/>
-        <positionref ref="tissuePos"/>
-      </physvol>
+        <volumeref ref="InvisBox"/>
+        <positionref ref="boxPos"/>
+      </physvol> 
     </volume>
-
   </structure>
 
   <setup name="Default" version="1.0">
@@ -72,4 +65,3 @@
   </setup>
 
 </gdml>
-

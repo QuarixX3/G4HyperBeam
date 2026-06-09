@@ -5,7 +5,6 @@
   <define>
 <!--    <position name="windowPos" unit="cm" x="0" y="0" z="-49"/> -->
     <position name="boxPos" unit="cm" x="0" y="0" z="0"/>
-    <position name="humanPos" unit="cm" x="0" y="0" z="0"/>
   </define>
 
   <materials>
@@ -27,14 +26,11 @@
 <!--    <material name="Aluminum" state="solid">
       <fraction n="1.0" ref="Aluminum"/>
     </material> -->
-    <material name="HTissue" state="solid">
-        <D value="1.0" unit="g/cm3"/>
   </materials>
 
   <solids>
     <box  name="invisBox"  x="50"  y="50"  z="100"  lunit="cm"/>
     <box  name="worldBox"    x="50"  y="50"  z="100" lunit="cm"/>
-    <box  name="humanBox"  x="50"  y="50"  z="100"  lunit="cm"/>
 <!--    <tube name="windowTube"  rmin="0" rmax="5" z="0.005" 
           startphi="0" deltaphi="360" lunit="mm" aunit="deg"/> -->
   </solids>
@@ -43,11 +39,6 @@
     <volume name="InvisBox">
       <materialref ref="Air"/>
       <solidref    ref="invisBox"/>
-    </volume>
-
-    <volume name="HumanBox">
-      <materialref ref="HTissue"/>
-      <solidref ref="humanBox"/>
     </volume>
 
 <!--    <volume name="ExitWindow">
@@ -62,14 +53,10 @@
         <volumeref ref="ExitWindow"/>
         <positionref ref="windowPos"/>
       </physvol> -->
-<!--      <physvol>
+      <physvol>
         <volumeref ref="InvisBox"/>
         <positionref ref="boxPos"/>
-      </physvol> -->
-      <physvol>
-        <volumeref ref="HumanBox"/>
-        <positionref ref="humanPos"/>
-      </physvol>
+      </physvol> 
     </volume>
   </structure>
 
