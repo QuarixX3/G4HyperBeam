@@ -9,12 +9,12 @@
 int main(int argc, char** argv) {
 
         // make UI here
-         G4UIExecutive* ui = nullptr;
-         if (argc == 1) {
-             ui = new G4UIExecutive(argc, argv);
-         }
+        //  G4UIExecutive* ui = nullptr;
+        //  if (argc == 1) {
+        //      ui = new G4UIExecutive(argc, argv);
+        //  }
 
-        construct run manager
+        // construct run manager
         auto runManager = G4RunManagerFactory::CreateRunManager(G4RunManagerType::Serial);
 
         using namespace HyperBeam;
@@ -26,9 +26,9 @@ int main(int argc, char** argv) {
         // initializing
         runManager->Initialize();
 
-         create visual
-         G4VisManager* visManager = new G4VisExecutive();
-         visManager->Initialize();
+        // create visual
+        // G4VisManager* visManager = new G4VisExecutive();
+        // visManager->Initialize();
 
          G4UImanager* UImanager = G4UImanager::GetUIpointer();
 
@@ -41,18 +41,18 @@ int main(int argc, char** argv) {
          }
 
         // finish ui stuff
-         if (ui) {
-             UImanager->ApplyCommand("/control/execute vis.mac);
-             ui->SessionStart();
-             delete ui;
-         }
-         else {
-                 G4String command = "/control/execute ";
-                 G4String fileName = argv[1];
-                 UImanager->ApplyCommand(command + fileName);
-         }
+        //  if (ui) {
+        //      UImanager->ApplyCommand("/control/execute vis.mac);
+        //      ui->SessionStart();
+        //      delete ui;
+        //  }
+        // else {
+        //         G4String command = "/control/execute ";
+        //         G4String fileName = argv[1];
+        //         UImanager->ApplyCommand(command + fileName);
+        // }
 
-         delete visManager;
+        // delete visManager;
         delete runManager;
 
         return 0;
