@@ -23,22 +23,26 @@
       <fraction n="0.7" ref="Nitrogen"/>
       <fraction n="0.3" ref="Oxygen"/>
     </material>
-<!--    <material name="Aluminum" state="solid">
+    <material name ="Vacuum" Z="1">
+        <D unit="g/cm3" value="1.0e-25"/>
+        <atom unit="g/mol" value="1.008"/>
+    </material>
+    <material name="Aluminum" state="solid">
       <fraction n="1.0" ref="Aluminum"/>
-    </material> -->
+    </material>
   </materials>
 
   <solids>
-    <box  name="invisBox"  x="50"  y="50"  z="100"  lunit="cm"/>
+    <box  name="airBox"  x="50"  y="50"  z="50"  lunit="cm"/>
     <box  name="worldBox"    x="50"  y="50"  z="100" lunit="cm"/>
 <!--    <tube name="windowTube"  rmin="0" rmax="5" z="0.005" 
           startphi="0" deltaphi="360" lunit="mm" aunit="deg"/> -->
   </solids>
 
   <structure>
-    <volume name="InvisBox">
+    <volume name="AirBox">
       <materialref ref="Air"/>
-      <solidref    ref="invisBox"/>
+      <solidref    ref="airBox"/>
     </volume>
 
 <!--    <volume name="ExitWindow">
@@ -47,16 +51,16 @@
     </volume> -->
 
     <volume name="World">
-      <materialref ref="Air"/>
+      <materialref ref="Vacuum"/>
       <solidref    ref="worldBox"/>
 <!--      <physvol>
         <volumeref ref="ExitWindow"/>
         <positionref ref="windowPos"/>
       </physvol> -->
       <physvol>
-        <volumeref ref="InvisBox"/>
+        <volumeref ref="AirBox"/>
         <positionref ref="boxPos"/>
-      </physvol> 
+      </physvol>
     </volume>
   </structure>
 

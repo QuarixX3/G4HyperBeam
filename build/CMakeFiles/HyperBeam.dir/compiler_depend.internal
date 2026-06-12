@@ -341,6 +341,7 @@ CMakeFiles/HyperBeam.dir/main.cxx.o
  /GEANT4/geant4-install/include/Geant4/G4TwoVector.hh
  /GEANT4/geant4-install/include/Geant4/G4TypeKey.hh
  /GEANT4/geant4-install/include/Geant4/G4Types.hh
+ /GEANT4/geant4-install/include/Geant4/G4UIExecutive.hh
  /GEANT4/geant4-install/include/Geant4/G4UIbatch.hh
  /GEANT4/geant4-install/include/Geant4/G4UIcommand.hh
  /GEANT4/geant4-install/include/Geant4/G4UIcommandStatus.hh
@@ -389,6 +390,7 @@ CMakeFiles/HyperBeam.dir/main.cxx.o
  /GEANT4/geant4-install/include/Geant4/G4VTrajectory.hh
  /GEANT4/geant4-install/include/Geant4/G4VTrajectoryModel.hh
  /GEANT4/geant4-install/include/Geant4/G4VTree.hh
+ /GEANT4/geant4-install/include/Geant4/G4VUIshell.hh
  /GEANT4/geant4-install/include/Geant4/G4VUPLSplitter.hh
  /GEANT4/geant4-install/include/Geant4/G4VUserActionInitialization.hh
  /GEANT4/geant4-install/include/Geant4/G4VUserDetectorConstruction.hh
